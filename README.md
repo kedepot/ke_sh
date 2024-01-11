@@ -9,7 +9,8 @@ Tip: Add script folder to ENV in your .bashrc (or similar) and run the scripts a
 Bash Splash!
 From neofetch to pfetch...to just a little bit more up-time stats:
 
-![kesplashimg](https://github.com/kedepot/kesplash/assets/95410139/581958df-6e11-4fb1-978f-47f82443cc93)
+![image](https://github.com/kedepot/ke_sh/assets/95410139/b1c657cf-aaad-427e-8c7b-f2b7d6283bcd)
+
 
 ### Info
 - Uses 'last reboot' data to gather "approximate" data
@@ -32,7 +33,8 @@ https://github.com/rfmoz/tuptime )
 # datecount
 Calculate days + other units of time between input dates
   
-![datecount](https://github.com/kedepot/datecount/assets/95410139/baa683f5-ad32-4696-9de7-86d040a1b619)
+![image](https://github.com/kedepot/ke_sh/assets/95410139/ff0c793b-52f3-40db-bd22-1bcf008924c4)
+
 
 **Format:** datecount 1989-10-03 2023-10-03  
 (FROM-DATE TO-DATE using Year-Month-Day. Not tested with non-ISO8601 locales - may or may not work on those.)  
