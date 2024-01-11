@@ -1,0 +1,33 @@
+#!/bin/sh
+# KESPLASH v1.45 - Simplified
+
+color_check=$(tput colors)
+if [ $color_check -gt 254 ]; then
+    LOW="\033[38;5;67m"
+    BLUE="\033[38;5;111m"
+    GREEN="\033[38;5;115m"
+elif [ $color_check -gt 15 ]; then
+    LOW="\e[34m"
+    BLUE="\e[94m"
+    GREEN="\e[92m"
+else
+    LOW="\e[39m"
+    BLUE="\e[39m"
+    GREEN="\e[39m"
+fi
+
+f_calctime () {
+    printf '%dd %dh %dm' $(($1/86400)) $(($1%86400/3600)) $(($1%3600/60))
+}
+
+count=$(printf "$(last reboot)" | grep -c '^')
+count=$(($count-2))
+paclog=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log)
+start_of_life=$(date -u -d ${paclog: 1:10} +%s)
+today=$(date -u +%s)
+life_s=$(($today - $start_of_life))
+life=$(f_calctime $life_s)
+up=$(uptime -p)
+now=$(LC_TIME="en_US.UTF-8"  date +'- %A %B %-d %Y, Week %-V, Q%-q - %H:%M %Z')
+
+printf "\n${BLUE}[ Session #%i ] ${LOW}%s \n${GREEN}  %s${LOW} - System life: %s \n\n" $count "$now" "$up" "$life"

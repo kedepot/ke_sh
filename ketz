@@ -1,0 +1,254 @@
+#!/bin/sh
+
+# KETZ v1.08 - Kjell Emanuelsson 2023 - Time Zones - shell script exercise
+
+color_check=$(tput colors)
+
+if [ $color_check -gt 254 ]; then
+    LOW="\033[38;5;110m"
+    BLUE="\033[38;5;111m"
+    GREEN="\033[38;5;115m"
+    INVGREEN="\033[38;5;66m"
+    INVLOW="\033[38;5;67m"
+    INVBLUE="\033[38;5;67m"
+elif [ $color_check -gt 15 ]; then
+    LOW="\e[37m"
+    BLUE="\e[94m"
+    GREEN="\e[94m"
+    INVGREEN="\e[34m"
+    INVLOW="\e[90m"
+    INVBLUE="\e[34m"
+else
+    LOW="\e[39m"
+    BLUE="\e[39m"
+    GREEN="\e[39m"
+    INVGREEN="\e[39m"
+    INVLOW="\e[39m"
+    INVBLUE="\e[39m"
+fi
+
+OG_IFS=$IFS
+
+# Formatting presets
+date_f="%A %B %-d"
+time_f="%R %Z"
+dt="%A %B %-d,%R %Z, %z, %-:::z"
+column1="$GREEN%-14s $LOW%-14s %-23s $GREEN%-11s $BLUE%s  %s\n"
+column2="$INVGREEN%-14s $INVLOW%-14s %-23s $INVGREEN%-11s $INVBLUE%s  %s\n"
+localcol="\e[0m$INVLOW%-28s %-0s %-23s $BLUE%-11s %6s\n"
+extracol="\e[0m$INVLOW%-28s %-0s %-23s %-14s \n"
+lct="en_GB.UTF-8"
+
+# FP for timezone offset calculation
+fp_format() {
+    if awk "BEGIN {exit !($1 == 0)}"
+    then
+        printf "LOCAL"
+    elif awk "BEGIN {exit !($1 > 0)}"
+    then
+        printf "+%s" $1 | sed 's/\.0$//'
+    else
+        printf "%s" $1 | sed 's/\.0$//'
+    fi
+}
+
+fp_trim_sub() {
+    N1=$(printf "%s"$1 | sed 's/:3.*/.5/')
+    N2=$(printf "%s"$2 | sed 's/:3.*/.5/')
+#     echo $N1 $N2
+    fp_format $(echo "$N1 $N2" | awk '{printf "%.1f", $1-$2}')
+}
+
+# "Quick" and dirty bash-floating point math(for mars clock)
+# (all with awk-printf because Arch Linux does not incluide bc!)
+fp_sub() {
+    printf "$1 $2" | awk '{printf "%.16f", $1-$2}'
+}
+
+fp_div() {
+    printf "$1 $2" | awk '{printf "%.16f", $1/$2}'
+}
+
+fp_add() {
+    printf "$1 $2" | awk '{printf "%.16f", $1+$2}'
+}
+
+fp_mul() {
+    printf "$1 $2" | awk '{printf "%.16f", $1*$2}'
+}
+
+fp_mod() {
+    printf "$1 $2" | awk '{printf "%.16f", $1%$2}'
+}
+
+# Mars Clock (AM2000 implementation of James Tauber's marsclock.com
+# (+also see NASA MSD notes https://www.giss.nasa.gov/tools/mars24/help/notes.html)
+ms=$(fp_div $(date +"%s%N") 1000000)
+jut=$(fp_add $(fp_div $ms 86400000) 2440587.5)
+jls=$(fp_div $(fp_add 37 32.184) 86400)
+jtt=$(fp_add $jut $jls)
+j2k=$(fp_sub $jtt 2451545)
+raw_msd=$(fp_sub $(fp_add $(fp_div $(fp_sub $j2k 4.5) 1.027491252) 44796) 0.00096)
+mp=$(fp_mod $(fp_mul 24 $raw_msd) 24)
+m_h=$(printf "%s\n"$mp | sed 's/\..*//')
+min=$(fp_mod $(fp_mul 60 $mp) 60)
+m_m=$(printf "%s\n"$min | sed 's/\..*//')
+MTC=$(printf "%02d" $m_h)":"$(printf "%02d" $m_m)" MTC"
+MSD=$(LC_NUMERIC=C printf "MSD %.1f" $raw_msd)
+
+U="Coordinated Universal Time"
+U_DATE=$(LC_TIME=$lct TZ="Universal" date +"$date_f")
+U_TIME=$(LC_TIME=$lct TZ="Universal" date +"$time_f")
+
+LTZ=$(timedatectl | grep "Time zone" | sed 's/\s*Time zone: //;' | sed 's/(.*//')
+LTZ=${LTZ:0:28}
+IFS=, read -r L_DATE L_TIME TZ <<< $(LC_TIME=$lct date +"$dt")
+LO=$(date +"%-:::z")
+
+# Daylight Saving Time Check (Local)
+DST=""
+OFF_1=$(date -d '1 Jan' +%z)
+OFF_7=$(date -d '1 Jul' +%z)
+OFF_NOW=$(date +%z)
+if  test $OFF_NOW -gt $OFF_1  ||  test $OFF_NOW -gt $OFF_7
+then
+ DST="(DST)"
+fi
+
+printf "\n${BLUE}LOCAL TIME %s \n" $DST
+printf "$localcol" "$LTZ" "" "$L_DATE" "$L_TIME" "" ""
+
+# TIMEZONES
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Pacific/Pago_Pago" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Pago Pago" "Am.Samoa" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Pacific/Tahiti" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Papeete" "Fr.Polynesia" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/Anchorage" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Anchorage" "USA" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/Los_Angeles" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Los Angeles" "USA" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/Edmonton" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Edmonton" "Canada" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/Mexico_City" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Mexico City" "Mexico" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/New_York" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "New York" "USA" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/Caracas" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Caracas" "Venezuela" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Brazil/East" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Brasilia" "Brazil" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="America/St_Johns" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "St.John's" "Canada" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Atlantic/South_Georgia" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "South Georgia" "UK" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Atlantic/Cape_Verde" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Praia" "Cape Verde" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Iceland" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Reykjavik" "Iceland" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Africa/Douala" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Yaounde" "Cameroon" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Europe/Monaco" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Monaco" "P.o.Monaco" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Africa/Cairo" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Cairo" "Egypt" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Europe/Kyiv" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Kyiv" "Ukraine" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Indian/Antananarivo" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Antananarivo" "Madagasgar" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Iran" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Tehran" "Iran" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Dubai" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Dubai" "UAE" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Karachi" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Karachi" "Pakistan" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Kolkata" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "New Delhi" "India" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Almaty" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Astana" "Kazakhstan" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Yangon" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Yangon" "Burma" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Jakarta" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Jakarta" "Indonesia" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Taipei" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Taipei" "Taiwan" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Japan" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Tokyo" "Japan" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Australia/Canberra" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Canberra" "Australia" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Asia/Magadan" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Magadan" "Russia" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Pacific/Auckland" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Auckland" "New Zealand" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Pacific/Tongatapu" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column1" "Nuku'alofa" "Tonga" "$DATE" "$TIME" "$U" "$TZ"
+
+IFS=, read -r DATE TIME U Z <<< $(LC_TIME=$lct TZ="Pacific/Kiritimati" date +"$dt")
+TZ=$(fp_trim_sub $Z $LO)
+printf "$column2" "Line Islands" "Kiribati" "$DATE" "$TIME" "$U" "$TZ"
+
+printf "\n$extracol" "Coordinated Universal Time" "" "$U_DATE" "$U_TIME"
+printf "$extracol" "Coordinated Mars Time" "" "$MSD" "$MTC"
+printf "$extracol" "Unix Time" "" "(Epoch)" "$(date +"%s")"
+echo
+IFS=$OG_IFS

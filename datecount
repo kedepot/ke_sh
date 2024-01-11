@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# DATECOUNT v1 - Bash-excersise 2023 by Kjell Emanuelsson
+# Calculate days + other units of time between input dates
+
+# Format: datecount 1989-10-03 2023-10-03   (Year-Month-Day) 
+# Note: Hyphens are not required
+# Note: Skipping the century part in the year will be counted as 1900's
+# Note: If only a single date is provided, today is used as 'to' date
+
+color_check=$(tput colors)
+if [ $color_check -gt 254 ]; then
+    LOW="\033[38;5;67m"
+    BLUE="\033[38;5;111m"
+    GREEN="\033[38;5;115m"
+elif [ $color_check -gt 15 ]; then
+    LOW="\e[34m"
+    BLUE="\e[94m"
+    GREEN="\e[92m"
+else
+    LOW="\e[39m"
+    BLUE="\e[39m"
+    GREEN="\e[39m"
+fi
+
+if [ $# -eq 2 ]; then
+    from_date=$(date -d "$1" +%s)
+    to_date=$(date -d "$2" +%s)
+elif [ $# -eq 1 ]; then
+    from_date=$(date -d "$1" +%s)
+    to_date=$(date +%s)
+fi
+
+frd=$(date -d "@$from_date" +%F)
+tod=$(date -d "@$to_date" +%F)
+t=$(( $to_date - $from_date ))
+days=$(($t/86400)) 
+
+# Silly US-numeric comma-separation (for readability) without ENV hassle
+fdays=$(printf $days | rev | sed 's/.\{3\}/&,/g' | rev | sed 's/^,\(.*\)/\1/')
+fweeks=$(printf $(($days/7)) | rev | sed 's/.\{3\}/&,/g' | rev | sed 's/^,\(.*\)/\1/')
+fhours=$(printf $(($t/3600)) | rev | sed 's/.\{3\}/&,/g' | rev | sed 's/^,\(.*\)/\1/')
+fminutes=$(printf $(($t/60))  | rev | sed 's/.\{3\}/&,/g' | rev | sed 's/^,\(.*\)/\1/')
+fseconds=$(printf $t | rev | sed 's/.\{3\}/&,/g' | rev | sed 's/^,\(.*\)/\1/')
+
+printf "\n${LOW}Time From ${BLUE}%s ${LOW}To ${BLUE}%s${LOW}:\n\n" "$frd" "$tod"
+
+printf "${BLUE}%d${LOW} Years, "      $(($t/31556952))
+printf "${BLUE}%d${LOW} Days, "       $(($t%31556952/86400))
+printf "${BLUE}%d${LOW} Hours, "      $(($t%86400/3600))
+printf "${BLUE}%d${LOW} Minutes, "    $(($t%3600/60))
+printf "${BLUE}%d${LOW} Seconds\n\n"  $(($t%60))
+
+printf "${GREEN}%s ${LOW}Days   \n\n" $fdays
+
+printf "${BLUE}%s ${LOW}Weeks   \n"   $fweeks
+printf "${BLUE}%s ${LOW}Hours   \n"   $fhours
+printf "${BLUE}%s ${LOW}Minutes \n"   $fminutes 
+printf "${BLUE}%s ${LOW}Seconds \n\n" $fseconds

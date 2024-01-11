@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# zipsep - zips selected folders or files separately - Kjell Emanuelsson 2022
+# When used for Custom Action for Thunar : Use %N ?
+
+args=( "$@" )
+OG_IFS=$IFS
+IFS=""
+for f in ${args[@]}; do
+    if [ -d ${f} ]; then
+        zip -rq "${f%/}.zip" "$f"
+    elif [ -f ${f} ]; then
+        zip -rq "${f%.*}.zip" "$f"
+    fi
+    done
+IFS=$OG_IFS

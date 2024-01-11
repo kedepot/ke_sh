@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Mp4-2-3 v1.1 - Bash Script Excercise / Kjell Emanuelsson 2023
+# - Convert mp4 audio stream(s) to mp3(s).
+# - Use "-v" to convert a mp3 into a visualized mp4 instead!
+# - Thunar Custom Action: Use %N
+
+## blendmodes ffmpeg blend
+# 'addition', 'grainmerge','and' ,'average','burn','darken','difference','grainextract',
+# 'divide' ,'dodge' ,'freeze' ,'exclusion' ,'extremity','glow' ,'hardlight' ,'hardmix',
+# 'heat' ,'lighten' ,'linearlight' ,'multiply','multiply128' ,'negation' ,'normal','or',
+# 'overlay' ,'phoenix' ,'pinlight' ,'reflect' ,'screen' ,'softlight' ,'subtract',
+# 'vividlight' ,'xor','c0_opacity','c1_opacity','c2_opacity' ,'c3_opacity' ,'all_opacity'
+
+## colormodes ffmpeg showspectrum
+# 'channel','intensity','rainbow','moreland','nebulae','fire','fiery','fruit','cool'
+# ,'magma','green','viridis','plasma','cividis','terrain'
+
+FILES=( "$@" )
+FLAG=false
+while getopts :vn opt;
+do
+    case "${opt}" in
+        v) FLAG=true;;
+    esac
+done
+
+if [ -n "$FILES" ]; then
+    OG_IFS=$IFS
+    IFS=""
+    for f in ${FILES[@]}; do
+
+        if $FLAG && [ $f != "-v" ]; then
+            NAME=${f%.*}
+            ffmpeg -i "$f" -loglevel quiet -stats -vn -filter_complex \
+            "[0:a]showcqt=axis=0:s=1920x1080[v];
+            [0:a]showspectrum=color=fruit:scale=cbrt:orientation=vertical:s=1920x1080[va];
+            [v][va]blend=all_mode=softlight[v]" \
+            -map "[v]" -map 0:a -c:v libx264 -preset fast -crf 28 "$NAME.mp4"
+            if [ -t 0 ]; then
+                echo " ░▒▓██ COMPLETED: $NAME.mp4"
+            else
+                notify-send "MP4-2-3 ░▒▓██ COMPLETED: $NAME.mp4"
+            fi
+
+        elif [ "${f: -4}" == ".mp4" ]; then
+            NAME=${f%.*}
+            ffmpeg -i "$f" -loglevel quiet -stats -vn -acodec \
+            libmp3lame -ac 2 -ab 160k -ar 44100 "$NAME.mp3"
+            if [ -t 0 ]; then
+                echo " ░▒▓██ COMPLETED: $NAME.mp3"
+            else
+                notify-send "MP4-2-3 ░▒▓██ COMPLETED: $NAME.mp3"
+            fi
+        fi
+        done
+    IFS=$OG_IFS
+fi
