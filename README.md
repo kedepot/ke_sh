@@ -18,6 +18,7 @@ From neofetch to pfetch...to just a little bit more up-time stats:
 - Only runs when called. (when I launch a Terminal window. No daemons or anything.)
 - Customize directly in the script. 
 - Compatible with most shells & distros. Probably. (not POSIX)
+- Will need 'day' & 'day-se' too (just comment out that part if you prefer less text)
 
 ### Use
 Run kesplash from the top of your .bashrc (or similar).  
@@ -42,6 +43,7 @@ Calculate days + other units of time between input dates
 - Hyphens are not required
 - If only a single date is provided, **today** is used as TO-DATE
 - Only using the last 2 digits of a year will be counted as 1900's
+- Try your birthdate (and despair)
 
 ---
 
@@ -72,4 +74,15 @@ Usage example:  mp423 *.mp4  (converts all mp4s audio streams to new mp3 files)
 
 ---
 
+# day
+International UN days. 
+- Some days may be moving dates (baded on UN2024 dates - close enough! (too much hassle to track!) 
+- Use as-is (or as variable for other programs, like your terminal splash!)
 
+---
+
+# day-se
+Similar to 'day' but only (mostly) Swedish theme-days (No holidays or moving dates though - too much hassle to track!) 
+- Use as-is (or as variable for other programs, like your terminal splash!)
+
+---
