@@ -1,33 +1,62 @@
 #!/bin/sh
-# KESPLASH v1.45 - Simplified
+# KESPLASH v1.46 - Simple Terminal Splash (for Arch Linux) Kjell Emanuelsson 2024
 
 color_check=$(tput colors)
 if [ $color_check -gt 254 ]; then
     LOW="\033[38;5;67m"
-    BLUE="\033[38;5;111m"
-    GREEN="\033[38;5;115m"
+    MAIN="\033[38;5;111m"
+    HI="\033[38;5;115m"
 elif [ $color_check -gt 15 ]; then
     LOW="\e[34m"
-    BLUE="\e[94m"
-    GREEN="\e[92m"
+    MAIN="\e[94m"
+    HI="\e[92m"
 else
     LOW="\e[39m"
-    BLUE="\e[39m"
-    GREEN="\e[39m"
+    MAIN="\e[39m"
+    HI="\e[39m"
 fi
 
 f_calctime () {
     printf '%dd %dh %dm' $(($1/86400)) $(($1%86400/3600)) $(($1%3600/60))
 }
 
+# Session Counter
 count=$(printf "$(last reboot)" | grep -c '^')
 count=$(($count-2))
-paclog=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log)
-start_of_life=$(date -u -d ${paclog: 1:10} +%s)
 today=$(date -u +%s)
-life_s=$(($today - $start_of_life))
-life=$(f_calctime $life_s)
-up=$(uptime -p)
+
+# Extended Date + Time
 now=$(LC_TIME="en_US.UTF-8"  date +'- %A %B %-d %Y, Week %-V, Q%-q - %H:%M %Z')
 
-printf "\n${BLUE}[ Session #%i ] ${LOW}%s \n${GREEN}  %s${LOW} - System life: %s \n\n" $count "$now" "$up" "$life"
+# System Up-time
+up=$(uptime -p)
+
+# System Life-time
+paclog=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log)
+start_of_life=$(date -u -d ${paclog: 1:10} +%s)
+life_s=$(($today - $start_of_life))
+life=$(f_calctime $life_s)
+
+# Theme OTD
+un=$(day)
+se=$(day-se)
+daytxt=""
+
+# annoying formatting
+if [[ ! -z ${un} ]]; then
+    daytxt=$(printf "${LOW}%s\n" "$un")
+fi
+
+if [[ ! -z ${se} ]]; then
+    if [[ ! -z ${daytxt} ]]; then
+        daytxt="${daytxt}$(printf "\n${MAIN}%s\n" "$se")"
+    else
+        daytxt=$(printf "${MAIN}%s\n" "$se")
+    fi
+fi
+
+if [[ -z ${un} ]] && [[ -z ${se} ]]; then
+    printf "\n${MAIN}[ Session #%i ] ${LOW}%s\n  (No observation/theme today!)\n${HI}  %s${LOW} - System life: %s \n\n" $count "$now" "$up" "$life"
+else
+    printf "\n${MAIN}[ Session #%i ] ${LOW}%s\n%s\n${HI}%s${LOW} - System life: %s \n\n" $count "$now" "$daytxt" "$up" "$life"
+fi
