@@ -1,0 +1,288 @@
+#!/bin/sh
+# DAY : International UN days. (Some days may be moving dates? too much hassle to track! ;> ) Use as-is (or as variable for other programs) - Kjell Emanuelsson 2024
+day="d"$(date +%m%d)
+declare -A days
+days=(
+["d0104"]="World Braille Day (A/RES/73/161)"
+["d0124"]="International Day of Education (A/RES/73/25)"
+["d0126"]="International Day of Clean Energy (A/RES/77/327)"
+["d0127"]="International Day of Commemoration in Memory of the Victims of the Holocaust (A/RES/60/7)"
+["d0201"]="World Interfaith Harmony Week 1/7 (A/RES/65/5)"
+["d0202"]="World Interfaith Harmony Week 2/7 (A/RES/65/5)
+World Wetlands Day (A/RES/75/317)"
+["d0203"]="World Interfaith Harmony Week 3/7 (A/RES/65/5)"
+["d0204"]="World Interfaith Harmony Week 4/7 (A/RES/65/5)
+International Day of Human Fraternity (A/RES/75/317)"
+["d0205"]="World Interfaith Harmony Week 5/7 (A/RES/65/5)"
+["d0206"]="World Interfaith Harmony Week 6/7 (A/RES/65/5)
+International Day of Zero Tolerance to Female Genital Mutilation"
+["d0207"]="World Interfaith Harmony Week 7/7 (A/RES/65/5)"
+["d0210"]="International Day of the Arabian Leopard (A/RES/77/295)
+World Pulses Day (A/RES/73/251)"
+["d0211"]="International Day of Women and Girls in Science (A/RES/70/212)"
+["d0212"]="International Day for the Prevention of Violent Extremism as and when Conducive to Terrorism (A/RES/77/243)"
+["d0213"]="World Radio Day (A/RES/67/124)"
+["d0217"]="Global Tourism Resilience Day (A/RES/77/269)"
+["d0220"]="World Day of Social Justice (A/RES/62/10)"
+["d0221"]="International Mother Language Day (A/RES/56/262)"
+["d0301"]="Zero Discrimination Day [UNAIDS]
+World Seagrass Day (A/RES/76/265)"
+["d0303"]="World Wildlife Day (A/RES/68/205)"
+["d0305"]="International Day for Disarmament and Non-Proliferation Awareness (A/RES/77/51)"
+["d0308"]="International Women's Day"
+["d0310"]="International Day of Women Judges (A/RES/75/274)"
+["d0315"]="International Day to Combat Islamophobia (A/RES/76/254)"
+["d0320"]="International Day of Happiness (A/RES/66/281)
+French Language Day"
+["d0321"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 1/7 (A/RES/34/24)
+International Day for the Elimination of Racial Discrimination (A/RES/2142 (XXI))
+World Poetry Day [UNESCO] (30 C/Resolution 29)
+International Day of Nowruz (A/RES/64/253)
+World Down Syndrome Day (A/RES/66/149)"
+["d0322"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 2/7 (A/RES/34/24)
+World Water Day (A/RES/47/193)"
+["d0323"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 3/7 (A/RES/34/24)
+World Meteorological Day [WMO] (WMO/EC-XII/Res.6)"
+["d0324"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 4/7 (A/RES/34/24)
+World Tuberculosis Day [WHO]
+International Day for the Right to the Truth concerning Gross Human Rights Violations and for the Dignity of Victims (A/RES/65/196)"
+["d0325"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 5/7 (A/RES/34/24)
+International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade (A/RES/62/122)
+International Day of Solidarity with Detained and Missing Staff Members (A/RES/49/59)"
+["d0326"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 6/7 (A/RES/34/24)"
+["d0327"]="Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination 7/7 (A/RES/34/24)"
+["d0330"]="International Day of Zero Waste (A/RES/77/161)"
+["d0402"]="World Autism Awareness Day (A/RES/62/139)"
+["d0404"]="International Day for Mine Awareness and Assistance in Mine Action (A/RES/60/97)" 
+["d0405"]="International Day of Conscience (A/RES/73/329)"
+["d0406"]="International Day of Sport for Development and Peace (A/RES/67/296)"
+["d0407"]="International Day of Reflection on the 1994 Genocide against the Tutsi in Rwanda (A/RES/58/234)
+World Health Day [WHO] (WHA/A.2/Res.35)"
+["d0412"]="International Day of Human Space Flight (A/RES/65/271)"
+["d0414"]="World Chagas Disease Day [WHO]"
+["d0420"]="Chinese Language Day"
+["d0421"]="World Creativity and Innovation Day (A/RES/71/284)"
+["d0422"]="International Mother Earth Day (A/RES/63/278)"
+["d0423"]="World Book and Copyright Day [UNESCO] (UNESCO 28 C/Resolution 3.18)
+English Language Day
+Spanish Language Day"
+["d0424"]="World Immunization Week 1/7 [WHO]
+International Day of Multilateralism and Diplomacy for Peace (A/RES/73/127)"
+["d0425"]="World Immunization Week 2/7 [WHO]
+World Malaria Day [WHO]
+International Girls in ICT Day [ITU]
+International Delegate’s Day (A/RES/73/286)"
+["d0426"]="World Immunization Week 3/7 [WHO]
+International Chernobyl Disaster Remembrance Day (A/RES/71/125)
+World Intellectual Property Day [WIPO]"
+["d0427"]="World Immunization Week 4/7 [WHO]"
+["d0428"]="World Immunization Week 5/7 [WHO]
+World Day for Safety and Health at Work"
+["d0429"]="World Immunization Week 6/7 [WHO]"
+["d0430"]="World Immunization Week 7/7 [WHO]
+International Jazz Day (UNESCO 36 C/Resolution 39)"
+["d0502"]="World Tuna Day (A/RES/71/124)"
+["d0503"]="World Press Freedom Day (UNESCO 26 C/Resolution 4.3)"
+["d0505"]="World Portuguese Language Day [UNESCO]"
+["d0508"]="Time of Remembrance and Reconciliation for Those Who Lost Their Lives During the Second World War (A/RES/59/26)"
+["d0510"]="International Day of Argania (A/RES/75/262)"
+["d0511"]="World Migratory Bird Day [UNEP]"
+["d0512"]="International Day of Plant Health [FAO] (A/RES/76/256)"
+["d0515"]="International Day of Families (A/RES/47/237)"
+["d0516"]="International Day of Living Together in Peace (A/RES/72/130)
+International Day of Light [UNESCO] (39 C/Resolution 16)"
+["d0517"]="World Telecommunication and Information Society Day (A/RES/60/252)"
+["d0519"]="World Fair Play Day (A/RES/78/310)"
+["d0520"]="World Bee Day (A/RES/72/211)"
+["d0521"]="International Tea Day (A/RES/74/241)
+World Day for Cultural Diversity for Dialogue and Development (A/RES/57/249)"
+["d0522"]="International Day for Biological Diversity (A/RES/55/201)"
+["d0523"]="International Day to End Obstetric Fistula (A/RES/67/147)
+Vesak, the Day of the Full Moon (A/RES/54/115)"
+["d0524"]="International Day of the Markhor (A/RES/78/278)"
+["d0525"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 1/7 (A/RES/54/91)
+World Football Day (A/RES/78/281)"
+["d0526"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 2/7 (A/RES/54/91)"
+["d0527"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 3/7 (A/RES/54/91)"
+["d0528"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 4/7 (A/RES/54/91)"
+["d0529"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 5/7 (A/RES/54/91)
+International Day of UN Peacekeepers (A/RES/57/129)"
+["d0530"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 6/7 (A/RES/54/91)
+International Day of Potato (A/RES/78/123)"
+["d0531"]="Week of Solidarity with the Peoples of Non-Self-Governing Territories 7/7 (A/RES/54/91)
+World No-Tobacco Day [WHO] (Resolution 42.19)"
+["d0601"]="Global Day of Parents (A/RES/66/292)"
+["d0603"]="World Bicycle Day (A/RES/72/272)"
+["d0604"]="International Day of Innocent Children Victims of Aggression (A/RES/ES-7/8)"
+["d0605"]="World Environment Day (A/RES/2994 (XXVII))
+International Day for the Fight against Illegal, Unreported and Unregulated Fishing (A/RES/72/72)"
+["d0606"]="Russian Language Day"
+["d0607"]="World Food Safety Day (A/RES/73/250)"
+["d0608"]="World Oceans Day (A/RES/63/111)"
+["d0610"]="International Day for Dialogue among Civilizations (A/RES/78/286)"
+["d0611"]="International Day of Play (A/RES/78/268)"
+["d0612"]="World Day Against Child Labour"
+["d0613"]="International Albinism Awareness Day (A/RES/69/170)"
+["d0614"]="World Blood Donor Day [WHO] (WHA Resolution 58.13)"
+["d0615"]="World Elder Abuse Awareness Day (A/RES/66/127)"
+["d0616"]="International Day of Family Remittances (A/RES/72/281)"
+["d0617"]="World Day to Combat Desertification and Drought (A/RES/49/115)"
+["d0618"]="Sustainable Gastronomy Day (A/RES/71/246)"
+["d0619"]="International Day for the Elimination of Sexual Violence in Conflict (A/RES/69/293)"
+["d0620"]="World Refugee Day (A/RES/55/76)"
+["d0621"]="International Day of Yoga (A/RES/69/131)
+International Day of the Celebration of the Solstice (A/RES/73/300)"
+["d0623"]="United Nations Public Service Day (A/RES/57/277)
+International Widows' Day (A/RES/65/189)"
+["d0624"]="International Day of Women in Diplomacy (A/RES/76/269)"
+["d0625"]="Day of the Seafarer [IMO] (STCW/CONF.2/DC/4)"
+["d0626"]="International Day against Drug Abuse and Illicit Trafficking (A/RES/42/112)
+United Nations International Day in Support of Victims of Torture (A/RES/52/149)"
+["d0627"]="Micro-, Small and Medium-sized Enterprises Day (A/RES/71/279)"
+["d0629"]="International Day of the Tropics (A/RES/71/279)"
+["d0630"]="International Asteroid Day (A/RES/71/90)
+International Day of Parliamentarism (A/RES/72/278)"
+["d0706"]="World Rural Development Day (A/78/L.84/Rev.2)
+International Day of Cooperatives (A/RES/47/90)"
+["d0707"]="World Kiswahili Language Day (A/RES/78/312)"
+["d0711"]="International Day of Reflection and Commemoration of the 1995 Genocide in Srebrenica (A/RES/78/282)
+World Population Day (A/RES/45/216)"
+["d0712"]="International Day of Combating Sand and Dust Storms (A/RES/77/294)"
+["d0715"]="World Youth Skills Day (A/RES/69/145)"
+["d0718"]="Nelson Mandela International Day (A/RES/64/13)"
+["d0720"]="World Chess Day (A/RES/74/22)
+International Moon Day (A/RES/76/76)"
+["d0725"]="World Drowning Prevention Day (A/RES/75/273)
+International Day of Women and Girls of African Descent (A/RES/78/323)"
+["d0728"]="World Hepatitis Day [WHO]"
+["d0730"]="International Day of Friendship (A/RES/65/275)
+World Day against Trafficking in Persons (A/RES/68/192)"
+["d0801"]="World Breastfeeding Week 1/7 [WHO]"
+["d0802"]="World Breastfeeding Week 2/7 [WHO]"
+["d0803"]="World Breastfeeding Week 3/7 [WHO]"
+["d0804"]="World Breastfeeding Week 4/7 [WHO]"
+["d0805"]="World Breastfeeding Week 5/7 [WHO]"
+["d0806"]="World Breastfeeding Week 6/7 [WHO]"
+["d0807"]="World Breastfeeding Week 7/7 [WHO]"
+["d0809"]="International Day of the World's Indigenous Peoples (A/RES/49/214)"
+["d0811"]="World Steelpan Day (A/RES/77/316)"
+["d0812"]="International Youth Day (A/RES/54/120)"
+["d0819"]="World Humanitarian Day (A/RES/63/139)"
+["d0821"]="International Day of Remembrance and Tribute to the Victims of Terrorism (A/RES/72/165)"
+["d0822"]="International Day Commemorating the Victims of Acts of Violence Based on Religion or Belief (A/RES/73/296)"
+["d0823"]="International Day for the Remembrance of the Slave Trade and Its Abolition [UNESCO] (29 C/Resolution 40)"
+["d0829"]="International Day against Nuclear Tests (A/RES/64/35)"
+["d0830"]="International Day of the Victims of Enforced Disappearances (A/RES/65/209)"
+["d0831"]="International Day for People of African Descent (A/RES/75/170)"
+["d0905"]="International Day of Charity (A/RES/67/105)"
+["d0907"]="International Day of Clean Air for Blue Skies (A/RES/74/212)
+International Day of Police Cooperation (A/RES/77/241)
+World Duchenne Awareness Day (A/RES/78/12)"
+["d0908"]="International Literacy Day [UNESCO] (UNESCO 14 C/Resolution 1.441)"
+["d0909"]="International Day to Protect Education from Attack (A/RES/74/275)"
+["d0912"]="United Nations Day for South-South Cooperation (A/RES/58/220)"
+["d0915"]="International Day of Democracy (A/RES/62/7)"
+["d0916"]="International Day of Science, Technology and Innovation for the South (A/RES/78/259)
+International Day for Interventional Cardiology (A/RES/76/302)
+International Day for the Preservation of the Ozone Layer (A/RES/49/114)"
+["d0917"]="World Patient Safety Day [WHO]"
+["d0918"]="International Equal Pay Day (A/RES/74/142)"
+["d0920"]="World Cleanup Day (A/RES/78/122)"
+["d0921"]="International Day of Peace (A/RES/36/67)"
+["d0923"]="International Day of Sign Languages (A/RES/72/161)"
+["d0926"]="International Day for the Total Elimination of Nuclear Weapons (A/RES/68/32)
+World Maritime Day"
+["d0927"]="World Tourism Day"
+["d0928"]="International Day for Universal Access to Information (A/RES/74/5)"
+["d0929"]="International Day of Awareness of Food Loss and Waste (A/RES/74/209)"
+["d0930"]="International Translation Day (A/RES/71/288)"
+["d1001"]="International Day of Older Persons (A/RES/45/106)"
+["d1002"]="International Day of Non-Violence (A/RES/61/271)"
+["d1004"]="World Space Week 1/7 (A/RES/54/68)"
+["d1005"]="World Space Week 2/7 (A/RES/54/68)
+World Teachers’ Day [UNESCO] ((27 C/INF.7))"
+["d1006"]="World Space Week 3/7 (A/RES/54/68)"
+["d1007"]="World Space Week 4/7 (A/RES/54/68)
+World Habitat Day (A/RES/40/202 A)
+World Cotton Day (A/RES/75/318)"
+["d1008"]="World Space Week 5/7 (A/RES/54/68)"
+["d1009"]="World Space Week 6/7 (A/RES/54/68)
+World Post Day"
+["d1010"]="World Space Week 7/7 (A/RES/54/68)
+World Mental Health Day [WHO]"
+["d1011"]="International Day of the Girl Child (A/RES/66/170)"
+["d1012"]="World Migratory Bird Day [UNEP]"
+["d1013"]="International Day for Disaster Risk Reduction (A/RES/64/200)"
+["d1015"]="International Day of Rural Women (A/RES/62/136)"
+["d1016"]="World Food Day [FAO] (A/RES/35/70)"
+["d1017"]="International Day for the Eradication of Poverty (A/RES/47/196)"
+["d1024"]="Global Media and Information Literacy Week, 1/8 (A/RES/75/267)
+Disarmament Week, 1/7 (A/RES/S-10/2 (p. 102))
+World Development Information Day (A/RES/3038 (XXVII))
+United Nations Day (A/RES/168 (II))"
+["d1025"]="Global Media and Information Literacy Week, 2/8 (A/RES/75/267)
+Disarmament Week, 2/7 (A/RES/S-10/2 (p. 102))"
+["d1026"]="Global Media and Information Literacy Week, 3/8 (A/RES/75/267)
+Disarmament Week, 3/7 (A/RES/S-10/2 (p. 102))"
+["d1027"]="Global Media and Information Literacy Week, 4/8 (A/RES/75/267)
+Disarmament Week, 4/7 (A/RES/S-10/2 (p. 102))
+World Day for Audiovisual Heritage [UNESCO] (UNESCO 33/C/Resolution 5)"
+["d1028"]="Global Media and Information Literacy Week, 5/8 (A/RES/75/267)
+Disarmament Week, 5/7 (A/RES/S-10/2 (p. 102))"
+["d1029"]="Global Media and Information Literacy Week, 6/8 (A/RES/75/267)
+Disarmament Week, 6/7 (A/RES/S-10/2 (p. 102))
+International Day of Care and Support (A/RES/77/317)"
+["d1030"]="Global Media and Information Literacy Week, 7/8 (A/RES/75/267)
+Disarmament Week, 7/7 (A/RES/S-10/2 (p. 102))"
+["d1031"]="Global Media and Information Literacy Week, 8/8 (A/RES/75/267)
+World Cities Day (A/RES/68/239)"
+["d1102"]="International Day to End Impunity for Crimes against Journalists (A/RES/68/163)"
+["d1105"]="World Tsunami Awareness Day (A/RES/70/203)"
+["d1106"]="International Day for Preventing the Exploitation of the Environment in War and Armed Conflict (A/RES/56/4)"
+["d1109"]="International Week of Science and Peace, 1/7 (A/RES/43/61)"
+["d1110"]="International Week of Science and Peace, 2/7 (A/RES/43/61)
+World Science Day for Peace and Development (UNESCO 31 C/Resolution 20)"
+["d1111"]="International Week of Science and Peace, 3/7 (A/RES/43/61)"
+["d1112"]="International Week of Science and Peace, 4/7 (A/RES/43/61)"
+["d1113"]="International Week of Science and Peace, 5/7 (A/RES/43/61)"
+["d1114"]="International Week of Science and Peace, 6/7 (A/RES/43/61)
+World Diabetes Day (A/RES/61/225)"
+["d1115"]="International Week of Science and Peace, 7/7 (A/RES/43/61)
+International Day for the Prevention of and Fight against All Forms of Transnational Organized Crime (A/RES/78/267)"
+["d1116"]="International Day for Tolerance [UNESCO] (28 C/Resolution 5.61)"
+["d1117"]="World Day of Remembrance for Road Traffic Victims (A/RES/60/5)"
+["d1118"]="World Antimicrobial Resistance Awareness Week, 18-24 November [WHO]
+World Day for the Prevention of and Healing from Child Sexual Exploitation, Abuse and Violence (A/RES/77/8)"
+["d1119"]="World Toilet Day (A/RES/67/291)"
+["d1120"]="Africa Industrialization Day (A/RES/44/237)
+World Children's Day (A/RES/836(IX))"
+["d1121"]="World Television Day (A/RES/51/205)
+World Philosophy Day [UNESCO] (33 C/Resolution 37)"
+["d1124"]="World Conjoined Twins Day (A/RES/78/313)"
+["d1125"]="International Day for the Elimination of Violence against Women (A/RES/54/134)"
+["d1126"]="World Sustainable Transport Day (A/RES/77/286)"
+["d1129"]="International Day of Solidarity with the Palestinian People (A/RES/32/40B)"
+["d1130"]="Day of Remembrance for all Victims of Chemical Warfare (OPCW C-20/DEC.10)"
+["d1201"]="World AIDS Day"
+["d1202"]="International Day for the Abolition of Slavery (A/RES/317(IV))"
+["d1203"]="International Day of Persons with Disabilities (A/RES/47/3)"
+["d1204"]="International Day of Banks (A/RES/74/245)"
+["d1205"]="International Volunteer Day for Economic and Social Development (A/RES/40/212)
+World Soil Day (A/RES/68/232)"
+["d1207"]="International Civil Aviation Day (A/RES/51/33)"
+["d1209"]="International Day of Commemoration and Dignity of the Victims of the Crime of Genocide and of the Prevention of this Crime (A/RES/69/323)
+International Anti-Corruption Day (A/RES/58/4)"
+["d1210"]="Human Rights Day (A/RES/423 (V))"
+["d1211"]="International Mountain Day (A/RES/57/245)"
+["d1212"]="International Day of Neutrality (A/RES/71/275)"
+["d1213"]="International Universal Health Coverage Day (A/RES/72/138)"
+["d1218"]="Arabic Language Day
+International Migrants Day (A/RES/55/93)"
+["d1220"]="International Human Solidarity Day (A/RES/60/209)"
+["d1221"]="World Basketball Day (A/RES/77/324)"
+["d1227"]="International Day of Epidemic Preparedness (A/RES/75/27)"
+)
+today=${days[$day]}
+if [[ ! -z ${today} ]]; then
+    printf "%s\n" "$today"
+fi
