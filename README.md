@@ -17,7 +17,7 @@ From neofetch to pfetch...to just a little bit more up-time stats:
 - "Good enough" for my desktop use, as terminal splash screen trivia
 - Only runs when called. (when I launch a Terminal window. No daemons or anything.)
 - Customize directly in the script. 
-- Compatible with most shells & distros. Probably. (not POSIX)
+- Made for Arch Linux
 - Will need 'day' & 'day-se' too (just comment out that part if you prefer less text)
 
 ### Use
