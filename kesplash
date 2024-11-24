@@ -1,19 +1,21 @@
 #!/bin/sh
-# KESPLASH v1.46 - Simple Terminal Splash (for Arch Linux) Kjell Emanuelsson 2024
+# KESPLASH v1.47 - Simple Terminal Splash (for Arch Linux) Kjell Emanuelsson 2024
+# options: kesplash OPTION  (nod (no day+day-se) or do (day only) or seo (day-se only)) ex: kesplash nod (for no day or day-se)
+option=$1
 
 color_check=$(tput colors)
 if [ $color_check -gt 254 ]; then
-    LOW="\033[38;5;67m"
-    MAIN="\033[38;5;111m"
-    HI="\033[38;5;115m"
+    L="\033[38;5;67m"
+    M="\033[38;5;111m"
+    H="\033[38;5;115m"
 elif [ $color_check -gt 15 ]; then
-    LOW="\e[34m"
-    MAIN="\e[94m"
-    HI="\e[92m"
+    L="\e[34m"
+    M="\e[94m"
+    H="\e[92m"
 else
-    LOW="\e[39m"
-    MAIN="\e[39m"
-    HI="\e[39m"
+    L="\e[39m"
+    M="\e[39m"
+    H="\e[39m"
 fi
 
 f_calctime () {
@@ -31,32 +33,53 @@ now=$(LC_TIME="en_US.UTF-8"  date +'- %A %B %-d %Y, Week %-V, Q%-q - %H:%M %Z')
 # System Up-time
 up=$(uptime -p)
 
-# System Life-time
-paclog=$(sed -n "/ installed $1/{s/].*/]/p;q}" /var/log/pacman.log)
-start_of_life=$(date -u -d ${paclog: 1:10} +%s)
-life_s=$(($today - $start_of_life))
-life=$(f_calctime $life_s)
+# System Life-time (note: $2 used instead of $1 because of $1 as option clash. good? idk. works?)
+paclog=$(sed -n "/ installed $2/{s/].*/]/p;q}" /var/log/pacman.log)
+if [[ ! -z ${paclog} ]]; then
+    start_of_life=$(date -u -d ${paclog: 1:10} +%s)
+    life_s=$(($today - $start_of_life))
+    life=$(f_calctime $life_s)
+else
+    life=" N/A (No /var/log/pacman.log?)"
+fi
 
 # Theme OTD
-un=$(day)
-se=$(day-se)
 daytxt=""
+un=""
+se=""
 
-# annoying formatting
+case "$option" in
+    "nod")
+        ;;
+    "do")
+        un=$(day);;
+    "seo")
+        se=$(day-se);;
+    *)
+        un=$(day)
+        se=$(day-se);;
+esac
+
+# Tedious formatting
 if [[ ! -z ${un} ]]; then
-    daytxt=$(printf "${LOW}%s\n" "$un")
+    daytxt=$(printf "${L}%s\n" "$un")
 fi
 
 if [[ ! -z ${se} ]]; then
     if [[ ! -z ${daytxt} ]]; then
-        daytxt="${daytxt}$(printf "\n${MAIN}%s\n" "$se")"
+        daytxt="${daytxt}$(printf "\n${M}%s\n" "$se")"
     else
-        daytxt=$(printf "${MAIN}%s\n" "$se")
+        daytxt=$(printf "${M}%s\n" "$se")
     fi
 fi
 
-if [[ -z ${un} ]] && [[ -z ${se} ]]; then
-    printf "\n${MAIN}[ Session #%i ] ${LOW}%s\n  (No observation/theme today!)\n${HI}  %s${LOW} - System life: %s \n\n" $count "$now" "$up" "$life"
+if [[ -z ${daytxt} ]]; then
+    daytxt="No observation/theme day today!"
+fi
+
+
+if [[ "$1" == "nod" ]] ;then
+    printf "\n${M}[ Session #%i ] %s${L}\n${H}  %s${L} - System life: %s \n\n" $count "$now" "$up" "$life"
 else
-    printf "\n${MAIN}[ Session #%i ] ${LOW}%s\n%s\n${HI}%s${LOW} - System life: %s \n\n" $count "$now" "$daytxt" "$up" "$life"
+    printf "\n${M}[ Session #%i ] %s${L}\n%s\n${H}%s${L} - System life: %s \n\n" $count "$now" "$daytxt" "$up" "$life"
 fi
