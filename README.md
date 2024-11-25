@@ -96,9 +96,8 @@ International UN days.
 Similar to 'day' but only (mostly) Swedish theme-days.
 - Use as-is (or as variable for other programs, like your terminal splash!)
 - "Mostly", as some "special interest" (and joke-y) days are also included
-- Does not included UN days
-- Does not include moving dates
-- Does not include religious holidays - a lot of them are moving dates (weird to just include "some" of these (2me))
+- Does not include UN days or days with moving dates
+- No religious holidays: a lot of them are moving dates (weird to just include "some" of these imho)
 
 <br/>
 
