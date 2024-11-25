@@ -95,3 +95,14 @@ International UN days.
 Similar to 'day' but only (mostly) Swedish theme-days (No holidays or moving dates though, again.) 
 - Use as-is (or as variable for other programs, like your terminal splash!)
 
+<br/>
+
+## antiscrape  
+
+![2024-11-25_10-09](https://github.com/user-attachments/assets/f7bb5bc5-61a6-43d1-aa2d-6ee8b83151e5)
+
+Converts input text to html-code mixed with regular characters and commentes  
+- Should work reasonably well against the dumbest scrapers
+- No other conversions/efforts are needed, just paste into html document
+- There are many online tools for this, but they come and go...
+- Remember to quote the input if there are spaces!
