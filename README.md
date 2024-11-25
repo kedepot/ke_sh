@@ -93,7 +93,7 @@ International UN days.
 <br/>
 
 ## day-se
-Similar to 'day' but only (mostly) Swedish theme-days.
+Similar to 'day' but only (mostly) Swedish theme-days. In swedish!
 - Use as-is (or as variable for other programs, like your terminal splash!)
 - "Mostly", as some "special interest" (and joke-y) days are also included
 - Does not include UN days or days with moving dates
