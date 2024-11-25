@@ -1,0 +1,24 @@
+#!/bin/sh
+# anti-scrape encode characters in input text to html escape-characters (with some regular characters and random comments)
+# note: remember to "" if there are any spaces in text input!
+str=$1
+count=${#str}
+rnd_div=$(($count / 5))
+rnd_txt=$(shuf -i 0-$count -n $rnd_div)
+rnd_com=$(shuf -i 0-$count -n $rnd_div)
+encoded=""
+
+for (( i=0; i<$count; i++ )); do
+    c=${str:$i:1}
+    if [[ $rnd_txt == *"$i"* ]]; then
+        step=$(printf "%s" "$c")
+    else
+        step=$(printf "&#%d;" "'$c")
+    fi
+    if [[ $rnd_com == *"$i"* ]]; then
+        step=$step"<!--&#None-->"
+    fi
+    encoded=$encoded$step
+done
+
+echo $encoded
