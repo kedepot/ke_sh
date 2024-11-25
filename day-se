@@ -1,5 +1,5 @@
 #!/bin/sh
-# DAY-SE : (Mostly) Swedish Theme Days (in swedish) (excl. holidays & days with moving dates). Use as-is (or as variable for other programs) - Kjell Emanuelsson 2024
+# DAY-SE : Swedish Theme Days (+some international joke-y days. in swedish) (excl. holidays & days with moving dates). Use as-is (or as variable for other programs) - Kjell Emanuelsson 2024
 day="d"$(date +%m%d)
 declare -A days
 days=(
@@ -23,8 +23,7 @@ Pilsnerfilmens dag"
 ["d0124"]="Frufridagen"
 ["d0125"]="Halvsnödagen"
 ["d0126"]=""
-["d0127"]="Förintelsens minnesdag
-Hemtjänstens dag"
+["d0127"]="Hemtjänstens dag"
 ["d0128"]="Dataskyddsdagen
 Konungens namnsdag
 Internationella LEGO-dagen"
@@ -34,7 +33,6 @@ Lönekonsultens dag
 Upp och hoppa-dagen"
 ["d0201"]="Vegetariska dagen"
 ["d0202"]="Murmeldjursdagen
-Internationella våtmarksdagen
 Internationella tvillingdagen
 Smoothiens dag"
 ["d0203"]="Andningens dag
@@ -43,31 +41,25 @@ Morotskakans dag"
 Vargens dag"
 ["d0205"]="Nutelladagen
 Runebergsdagen"
-["d0206"]="Int. dagen för nolltolerans mot kvinnlig könsstympning
-Samernas nationaldag
+["d0206"]="Samernas nationaldag
 Semikolonets dag"
 ["d0207"]="Tankens dag
 Trafiklärarens dag"
 ["d0208"]="Äggahalvans dag"
-["d0210"]="Baljväxtens dag"
 ["d0211"]="Internationella 112-dagen
-Världsdagen för de sjuka
-Int. dagen för kvinnor och flickor inom vetenskap"
+Världsdagen för de sjuka"
 ["d0212"]="Darwins födelsedag
 Djurförsökens dag"
-["d0213"]="Världsradiodagen
-Tandborstbytardagen"
+["d0213"]="Tandborstbytardagen"
 ["d0214"]="Alla hjärtans dag
 Alla hjärtebarns dag"
 ["d0215"]="Internationella barncancerdagen
 Geléhallonens dag"
 ["d0218"]="Fotens dag"
 ["d0219"]="Knäckebrödets dag"
-["d0220"]="Världsdagen för social rättvisa
-Slarvighetens dag
+["d0220"]="Slarvighetens dag
 Internationella piprökardagen"
-["d0221"]="Internationella dagen för modersmål
-Fondvalsdagen"
+["d0221"]="Fondvalsdagen"
 ["d0222"]="Alla scouters dag*
 Internationella brottsofferdagen"
 ["d0223"]="Kakelplattans dag"
@@ -78,18 +70,15 @@ Internationella EBM-dagen"
 ["d0228"]="Internationella musarmsdagen
 Myggholkens dag
 Kalevaladagen"
-["d0301"]="Krama en bibliotekarie-dagen
-Internationella dagen mot diskriminering"
+["d0301"]="Krama en bibliotekarie-dagen"
 ["d0302"]="Serietidningens dag"
 ["d0303"]="Dagen för musikalisk frihet
-Mandelkubbens dag
-Världsdagen för natur- och djurliv"
+Mandelkubbens dag"
 ["d0304"]="Bananens dag"
 ["d0305"]="Ostbågens dag"
 ["d0306"]="Europeiska logopeddagen"
 ["d0307"]="Punschrullens dag
 Podcastens dag"
-["d0308"]="Internationella kvinnodagen"
 ["d0309"]="Tomatsåsens dag"
 ["d0310"]="V8-motorns dag
 Super Mario-dagen"
@@ -120,27 +109,17 @@ Internationella barnreumatikerdagen"
 Världsberättardagen
 Internationella glädjedagen
 World Salad Day"
-["d0321"]="Int. dagen för avskaffande av rasdiskriminering
-Internationella dagen för Nowruz
-Internationella dockteaterdagen
-Världspoesidagen
-Internationella Downs syndrom-dagen
+["d0321"]="Internationella dockteaterdagen
 Internationella färgdagen
 Rocka sockorna-dagen
 Internationella skogsdagen"
-["d0322"]="Internationella vattendagen
-Kennethdagen"
+["d0322"]="Kennethdagen"
 ["d0323"]="Nordens dag
-Världsmeteorologidagen
 Matlådans dag"
-["d0324"]="Europeiska dagen för hantverksmässigt tillverkad glass
-Int. dagen för rätt till sanning om grova kränkningar av de mänskliga rättigheterna
-Världstuberkulosdagen"
-["d0325"]="Internationella dagen till minne av slaveriets offer
-Trandagen
+["d0324"]="Europeiska dagen för hantverksmässigt tillverkad glass"
+["d0325"]="Trandagen
 Våffeldagen
-Tolkien reading day
-Int. solidaritetsdagen för frihetsberövad eller försvunnen personal"
+Tolkien reading day"
 ["d0326"]="Dialersystemens dag
 Arbetsplatsombudens dag"
 ["d0327"]="Världsteaterdagen"
@@ -149,19 +128,14 @@ Arbetsplatsombudens dag"
 Int. dagen för synliggörande av transpersoner
 Kullerbyttans dag"
 ["d0401"]="Skojardagen"
-["d0402"]="Världsautismdagen
-Internationella barnboksdagen
+["d0402"]="Internationella barnboksdagen
 Studenternas dag"
 ["d0403"]="Kärlekens dag"
-["d0404"]="Internationella dagen för minor och minröjning
-Morotens dag"
+["d0404"]="Morotens dag"
 ["d0405"]="Capsens dag"
 ["d0406"]="Barn på sjukhusdagen
 Pingisens dag
-Internationella sportdagen för utveckling och fred
 Internationella Carbonara dagen"
-["d0407"]="Int. dagen för reflektion av folkmordet i Rwanda
-Världshälsodagen"
 ["d0408"]="Romernas internationella dag"
 ["d0409"]="CSS-naked day"
 ["d0410"]="Bulle med bullens-dag
@@ -169,12 +143,9 @@ Internationella syskondagen"
 ["d0411"]="Internationella parkinsondagen"
 ["d0412"]="Lakritsdagen
 Surdegsdagen
-Linssoppans dag
-Internationella dagen för bemannade rymdfärder"
+Linssoppans dag"
 ["d0413"]="Knytblusens dag"
-["d0414"]="Cultural Unity Day
-Mahl Language Day
-Volvons dag
+["d0414"]="Volvons dag
 Cake and Cunnilingus Day"
 ["d0415"]="Internationella biomedicinska analytikerdagen"
 ["d0416"]="Världsröstdagen"
@@ -185,33 +156,25 @@ Folkhögskolans dag"
 ["d0420"]="Internationella cannabisdagen
 Polkagrisens dag
 Svenska gin & tonic-dagen"
-["d0421"]="Terrakottakrukans dag
-Världsdagen för kreativitet och innovation"
-["d0422"]="Jordens dag"
+["d0421"]="Terrakottakrukans dag"
 ["d0423"]="Världsbokdagen"
-["d0424"]="Försöksdjurens dag
-Int. dagen för multilateralism och diplomati för fred"
+["d0424"]="Försöksdjurens dag"
 ["d0425"]="Världsmalariadagen
 Mamatummy Day
 Lekens dag"
-["d0426"]="Världsdagen för intellektuell äganderätt
-Promenadens dag
-Alien-dagen
-Internationella dagen till minnet av Tjernobylkatastrofen"
+["d0426"]="Promenadens dag
+Alien-dagen"
 ["d0427"]="Världstapirdagen"
-["d0428"]="Arbetsmiljödagen
-Möteskulturdagen"
+["d0428"]="Möteskulturdagen"
 ["d0429"]="Dansens dag
 Svenska friluftsdagen"
 ["d0430"]="Valborgsmässoafton
-Konungens födelsedag
-Internationella jazzdagen"
+Konungens födelsedag"
 ["d0501"]="Första maj / Arbetarrörelsens dag
 Budapestbakelsens dag"
 ["d0502"]="Harry potter-dagen
 Världsdagen för tonfisk"
-["d0503"]="Internationella dagen för pressfrihet
-Asociala dagen"
+["d0503"]="Asociala dagen"
 ["d0504"]="Fothälsodagen
 Star wars-dagen"
 ["d0505"]="Internationella barnmorskedagen
@@ -222,8 +185,7 @@ Internationella Ragdolldagen"
 Dragspelets dag
 Hembakatdagen
 Regnbågsfamiljers dag"
-["d0508"]="Hågkomst och försoning för de som omkom under andra världskriget
-Internationella vikingadagen
+["d0508"]="Internationella vikingadagen
 Röda Korsets dag"
 ["d0509"]="Europadagen
 Nedkopplingens dag
@@ -236,32 +198,22 @@ Internationella sjuksköterskedagen
 Massagens dag
 ME/CFS-dagen
 Dagbokens dag
-Automower®-dagen
 Snellmansdagen"
 ["d0513"]="Receptionistens dag"
 ["d0514"]="Svenska teckenspråkets dag
 Rumpans dag"
-["d0515"]="Internationella familjedagen
-Kardemummabullens dag
+["d0515"]="Kardemummabullens dag
 Arbetslöshetens dag"
-["d0516"]="Internationella celiakidagen
-Internationella dagen för fredlig samlevnad
-Internationella ljusdagen"
-["d0517"]="Internationella dagen mot homo- och transfobi
-Internationella telekommunikationsdagen"
+["d0516"]="Internationella celiakidagen"
+["d0517"]="Internationella dagen mot homo- och transfobi"
 ["d0518"]="Fascinerande växters dag
 Internationella museidagen"
 ["d0519"]="Nationella mag-och tarmdagen
 Halloumiostens dag"
-["d0520"]="Internationella bi-dagen
-Williams syndromdagen
+["d0520"]="Williams syndromdagen
 Kulturskolans dag"
-["d0521"]="Världsdagen för kulturell mångfald för dialog och utveckling
-Internationella tedagen"
-["d0522"]="Internationella dagen för biologiskt mångfald
-Picknickens dag"
+["d0522"]="Picknickens dag"
 ["d0523"]="Internationella sköldpaddsdagen
-Internationella dagen för utrotning av obstetrisk fistula
 Måltidens gemenskapsdag"
 ["d0524"]="Nationalparkernas dag
 Ofrivilligt barnlösas dag
@@ -275,24 +227,17 @@ Ostens dag"
 Internationella krama en musiker-dagen
 Internationella burgardagen
 Internationella mensdagen"
-["d0529"]="Internationella dagen för FN:s fredsbevarande personal
-Veterandagen"
+["d0529"]="Veterandagen"
 ["d0530"]="Internationella MS-dagen
 Fönsterrenoveringens dag"
-["d0531"]="Internationella dagen mot tobak"
 ["d0601"]="Mjölkens dag
-Mobilfria dagen
-Globala dagen för föräldrar"
+Mobilfria dagen"
 ["d0602"]="Internationella artrosdagen
 Internationella dagen mot ätstörningar"
-["d0603"]="Internationella klumpfotsdagen
-Internationella cykeldagen"
-["d0604"]="Int. dagen för barn som blivit offer för aggression
-Assistansens dag"
-["d0605"]="Världsmiljödagen
-Alla vänners dag
-Barfotadagen
-Int. dagen för kampen mot illegalt, orapporterat och oreglerat fiske"
+["d0603"]="Internationella klumpfotsdagen"
+["d0604"]="Assistansens dag"
+["d0605"]="Alla vänners dag
+Barfotadagen"
 ["d0606"]="Dagen-D
 Fruktens dag
 Färskpotatisens dag
@@ -302,26 +247,18 @@ Internationella donutdagen
 Den stora lupinbekämpardagen
 Motorhistoriska dagen"
 ["d0607"]="Punkens dag"
-["d0608"]="Världshavens dag"
 ["d0609"]="Internationella arkivdagen
 Brickbandens dag"
-["d0612"]="Internationella dagen mot barnarbete"
-["d0613"]="Internationella dagen för medvetenhet om albinism"
-["d0614"]="Internationella blodgivardagen"
-["d0615"]="Chaufförens dag
-Världsdagen om våld och övergrepp mot äldre"
+["d0615"]="Chaufförens dag"
 ["d0616"]="Bloomsday
-Internationella dagen för familjeremitteringar
 Redovisningskonsultens dag"
-["d0617"]="Världsdagen för bekämpning av ökenutbredning och torka"
 ["d0618"]="Internationella picknickdagen
 Pionens dag
 Internationella sushidagen
 Internationella dagen för hållbar gastronomi"
 ["d0619"]="Internationella flanerardagen
 Frisörens dag"
-["d0620"]="Internationella surfdagen
-Världsdagen för flyktingar"
+["d0620"]="Internationella surfdagen"
 ["d0621"]="Internationella ALS-dagen
 Långsamhetens dag
 Världsmusikdagen
@@ -329,35 +266,25 @@ Internationella yogadagen
 Giraffens dag
 Internationella selfiedagen
 Världshumanistdagen"
-["d0622"]="FN:s dag för offentliga tjänster
-Internationella dagen för änkor"
-["d0625"]="Internationella dagen för sjöfarare"
-["d0626"]="Internationell solidaritetsdag för tortyroffer
-Int. dagen mot missbruk av och olaglig handel med narkotika
-Chokladpuddingens dag"
-["d0627"]="Internationella dagen för små- och medelstora företag"
+["d0622"]="Internationella dagen för änkor"
+["d0626"]="Chokladpuddingens dag"
 ["d0630"]="Pilsnerkorvens dag
-Internationella dagen för asteroider
-Internationella dagen för parlamentarism"
+Internationella dagen för asteroider"
 ["d0701"]="Silikonbröstens dag"
 ["d0702"]="Rosens dag"
 ["d0706"]="Internationella kyssdagen"
 ["d0707"]="Hudvårdens dag"
-["d0709"]="Int. dagen för oskadliggörande av handeldvapen"
 ["d0710"]="Hoya - Porslinsblommans dag"
-["d0711"]="FN:s befolkningsdag
-Internationella råkostdagen
+["d0711"]="Internationella råkostdagen
 Internationella minnesdagen för Srebrenica"
 ["d0712"]="Fulhetens dag"
 ["d0713"]="Paltdagen
 Internationella rock and roll-dagen"
 ["d0714"]="Kronprinsessans födelsedag
 Internationella dagen för ickebinära"
-["d0715"]="Tornedalingarnas dag
-Världsdagen för ungdomars talanger"
+["d0715"]="Tornedalingarnas dag"
 ["d0717"]="Dagen för världsomfattande rättvisa
 Emojins dag"
-["d0718"]="Internationella Nelson Mandela-dagen"
 ["d0720"]="Internationella schackdagen"
 ["d0722"]="Approximativa pi-dagen"
 ["d0723"]="Varmkorvens dag"
@@ -368,12 +295,10 @@ Drive-thru dagen"
 Esperantodagen"
 ["d0727"]="Sjusovardagen
 Gå på styltor-dagen"
-["d0728"]="Jakttornets dag
-Världshepatitdagen"
+["d0728"]="Jakttornets dag"
 ["d0729"]="Internationella tigerdagen
 Lasagnens dag"
-["d0730"]="Internationella dagen mot trafficking av personer
-Världsbroderidagen
+["d0730"]="Världsbroderidagen
 Pocketbokens dag"
 ["d0731"]="Världsvänskapsdagen
 Dagen för ovanliga instrument"
@@ -387,26 +312,20 @@ Kräftpremiären
 Lyckans dag
 Internationella kattdagen
 Drottningens namnsdag"
-["d0809"]="Internationella dagen för världens ursprungsfolk
-Rulltårtans dag
+["d0809"]="Rulltårtans dag
 Mumindagen"
 ["d0810"]="Lejonets dag"
-["d0812"]="Internationella ungdomsdagen"
 ["d0813"]="Vänsterhäntas dag"
 ["d0815"]="Mormorsrutans dag"
 ["d0816"]="Berätta ett skämt-dagen"
-["d0819"]="Internationella dagen för humanitärt arbete
-Luftfartsdagen"
+["d0819"]="Luftfartsdagen"
 ["d0820"]="Honungens dag"
 ["d0821"]="Världsentreprenörsdagen
 Alla pensionärers dag
 Durspelets dag
-Internationella dagen till minnet av terrorismens offer
 Groggens dag"
-["d0822"]="Internationella müslidagen
-Int. minnesdagen för människor som fallit offer för våldsdåd relaterade till religion"
-["d0823"]="Int. dagen till minne av slaveriet och dess avskaffande
-Köttbullens dag"
+["d0822"]="Internationella müslidagen"
+["d0823"]="Köttbullens dag"
 ["d0824"]="Årsdagen av Plutos degradering
 Bartolomeidagen
 Tandvårdsrädslans dag"
@@ -414,8 +333,6 @@ Tandvårdsrädslans dag"
 Jämställdhetsdagen"
 ["d0827"]="Sveriges Raoul Wallenbergdag"
 ["d0828"]="World day of Turner Syndrome"
-["d0829"]="Internationella dagen mot kärnvapenprov"
-["d0830"]="Int. dagen för offren för påtvingade försvinnanden"
 ["d0831"]="Internationella förebildsdagen"
 ["d0901"]="Fluortantens dag
 Däckcheckdagen"
@@ -425,52 +342,40 @@ Däckcheckdagen"
 ["d0905"]="Internationella dagen för välgörenhet"
 ["d0907"]="Salamins dag
 Stora duchennesdagen"
-["d0908"]="Internationella läskunnighetsdagen
-Internationella fysioterapins dag"
+["d0908"]="Internationella fysioterapins dag"
 ["d0909"]="Yrkesförarens dag"
 ["d0910"]="Internationella suicidpreventiva dagen"
 ["d0911"]="Kebabens dag"
 ["d0912"]="TV-spelsdagen
-Europeiska migrändagen
-Internationella dagen för syd-syd-samarbete"
+Europeiska migrändagen"
 ["d0914"]="Internationella dagen för atopiskt eksem"
-["d0915"]="Internationella dagen för demokrati
-Internationella lymfomdagen"
-["d0916"]="Internationella dagen för bevarande av ozonskiktet"
-["d0917"]="Höga klackars dag
-Internationella patientsäkerhetsdagen"
+["d0915"]="Internationella lymfomdagen"
+["d0917"]="Höga klackars dag"
 ["d0918"]="E-bokens dag
 Surkålens dag"
 ["d0919"]="Internationella piratdagen
 Messmörets dag
 Världsdagen för aortadissektion"
-["d0920"]="
-Bålens dag
-Allemansrättens dag
-World Cleanup Day"
+["d0920"]="Bålens dag
+Allemansrättens dag"
 ["d0921"]="Internationella Alzheimerdagen
-Internationella fredsdagen
 Minigolfdagen
 Världstacksamhetsdagen
 Scouternas fredsdag"
 ["d0922"]="Internationella bilfria dagen
 Hobbitdagen
 Noshörningens dag"
-["d0923"]="Internationella dagen för teckenspråken i världen
-Hjälpmedelsdagen
+["d0923"]="Hjälpmedelsdagen
 Bisexualitetens dag
 Upphandlarens dag"
 ["d0924"]="Skiljetecknets dag
 Dagvattnets dag"
 ["d0925"]="Äpplets dag
 Internationella farmaceutdagen"
-["d0926"]="Europeiska språkdagen
-Internationella dagen för eliminerandet av kärnvapen"
-["d0927"]="Tjänstepensionens dag
-Världsturismdagen"
+["d0926"]="Europeiska språkdagen"
+["d0927"]="Tjänstepensionens dag"
 ["d0928"]="Internationella rabiesdagen
-Neurodagen
-Int. dagen för universell tillgång till information"
+Neurodagen"
 ["d0929"]="Kaffets dag
 Internationella hjärtdagen
 Alla soffpotatisars dag
@@ -478,38 +383,31 @@ Alla soffpotatisars dag
 Resandefolkets dag
 Internationella pussdagen"
 ["d0930"]="International Blasphemy Rights Day
-Internationella dagen för översättning
 Naprapatins dag"
 ["d1001"]="Bröstcancerdagen
-Internationella dagen för äldre
 Vegetariska världsdagen
 Svenska flaskans dag
 Intelligensens dag"
-["d1002"]="Internationella ickevåldsdagen
-Lantbruksdjurens dag"
+["d1002"]="Lantbruksdjurens dag"
 ["d1003"]="Alla pojkvänners dag"
 ["d1004"]="Djurens dag
 Internationella vodkadagen
 Kanelbullens dag
 Internationella Tacodagen"
-["d1005"]="Internationella dagen för lärare"
 ["d1006"]="Nationella anhörigdagen
 Internationella CP-dagen
 HSP-dagen"
 ["d1007"]="Elmotorns dag"
 ["d1008"]="Vägledningens dag
 Världsdyslexidagen"
-["d1009"]="Världspostunionens dag
-Minnesdag för avskaffandet av Sveriges transatlantiska slavhandel
+["d1009"]="Minnesdag för avskaffandet av Sveriges transatlantiska slavhandel
 PANDAS/PANS Awareness Day
 Finlandssvenska matkulturdagen"
-["d1010"]="Världsdagen för mental hälsa
-Äggets dag
+["d1010"]="Äggets dag
 Grötens dag
 Internationella dagen mot dödsstraff
 Nordiska afasidagen"
 ["d1011"]="Äpplemustens Dag
-Internationella flickdagen
 Internationella komma-ut-dagen"
 ["d1012"]="Civilkuragets dag
 Internationella reumatikerdagen
@@ -524,7 +422,6 @@ Världsdagen för synskadade"
 Internationella beröringsdagen
 Internationella dagen för att tvätta händerna
 Vita käppens dag
-Internationella landsbygdskvinnors dag
 Brösthälsodagen
 Metoo-dagen"
 ["d1016"]="Steve Jobs Day
@@ -533,8 +430,7 @@ Lexikonens dag
 Alla kan rädda liv-dagen
 Världshungerdagen
 Polyneuropatidagen"
-["d1017"]="Internationella dagen för utrotande av fattigdom
-Parisarens dag"
+["d1017"]="Parisarens dag"
 ["d1018"]="Internationella klimakteriedagen
 Chokladmuffins dag
 Alla broars dag
@@ -547,9 +443,7 @@ Internationella osteoporosdagen"
 ["d1022"]="INTERNATIONELLA CAPS LOCK-DAGEN
 Internationella stamningsdagen"
 ["d1023"]="Internationella moldagen"
-["d1024"]="FN-dagen
-Världsdagen för information om utvecklingsfrågor
-Montessorilärardagen
+["d1024"]="Montessorilärardagen
 Raggsockans dag
 Snusets dag"
 ["d1025"]="Världspastadagen
@@ -560,8 +454,7 @@ Hjärnskadedagen"
 Internationella nalledagen
 Internationella religionsfrihetsdagen
 Internationella skolbiblioteksdagen
-Alla svärmödrars dag
-Världsdagen för audiovisuellt kulturarv"
+Alla svärmödrars dag"
 ["d1028"]="Bilens dag
 Internationella animationens dag
 Veckopengens dag"
@@ -570,22 +463,17 @@ Internets dag"
 ["d1030"]="★ Dennis Ritchie-dagen ★"
 ["d1031"]="Grannens dag
 Världsspardagen
-Magins dag
-Världsdagen för städer"
+Magins dag"
 ["d1101"]="Internationella vegandagen"
-["d1102"]="Int. dagen för att för att upphäva straffrihet för brott mot journalister"
 ["d1104"]="No hate day"
 ["d1105"]="Guy Fawkes Day
-Kaninköttets dag
-Internationella dagen för tsunamikännedom"
-["d1106"]="Gustav Adolfsdagen
-Int. dagen för att förhindra exploatering av miljön i krig och väpnade konflikter"
+Kaninköttets dag"
+["d1106"]="Gustav Adolfsdagen"
 ["d1107"]="Kladdkakans dag"
 ["d1108"]="Infraservicedagen
 Läromedlets dag
 Röntgensjuksköterskans internationella yrkesdag"
 ["d1109"]="Internationella refluxdagen"
-["d1110"]="Världsdagen för vetenskap för fred och utveckling"
 ["d1111"]="Chokladens dag
 Nordiska klimatdagen
 Hågkomstens dag
@@ -595,13 +483,11 @@ Hållbarhetsdagen för barn & unga"
 Miniatyrrävens dag
 Globala lunginflammationsdagen"
 ["d1113"]="Smörgåstårtans dag"
-["d1114"]="Världsdiabetesdagen
-Ostkakans dag"
+["d1114"]="Ostkakans dag"
 ["d1115"]="Fängslade författares dag
 Musikterapins dag
 Filantropins dag"
-["d1116"]="Internationella dagen för tolerans
-Mångkulturella matdagen"
+["d1116"]="Mångkulturella matdagen"
 ["d1117"]="Internationella prematurdagen
 Napoleonbakelsens dag
 De prestigelösas dag
@@ -610,61 +496,39 @@ Internationella elevdagen"
 Europeiska antibiotikadagen
 Benbuljongens dag"
 ["d1119"]="Internationella mansdagen
-Internationella toalettdagen
 Världsdagen mot barnmisshandel
 Internationella GIS-dagen
 Amaryllisens dag
 Internationella iktyosdagen
 Womens Entrepreneurship Day"
-["d1120"]="Barnkonventionsdagen
-Industrialiseringsdagen för Afrika
-Minnesdag för transpersoner"
+["d1120"]="Minnesdag för transpersoner"
 ["d1121"]="Musikfri dag
-Världsdagen för TV
 Världshejardagen"
 ["d1122"]="Wienerbrödets dag"
 ["d1123"]="Internationella hattdagen"
-["d1125"]="Internationella dagen mot våld mot kvinnor"
 ["d1126"]="Internationella undersköterskedagen"
 ["d1127"]="Hudterapeutens dag"
 ["d1128"]="Flaskmatardagen"
-["d1129"]="Int. solidaritetsdagen med det palestinska folket
-Vinylskivans dag"
+["d1129"]="Vinylskivans dag"
 ["d1130"]="Guldsmedens dag
-Kåldolmens dag
-Int. dagen till minnet av offren för kemisk krigsföring"
+Kåldolmens dag"
 ["d1201"]="Brandvarnardagen
-Internationella AIDS-dagen
 Glöggens dag"
-["d1202"]="Internationella dagen för avskaffande av slaveri
-Modelljärnvägens dag"
-["d1203"]="Drick en öl-dagen
-Internationella dagen för handikappade"
+["d1202"]="Modelljärnvägens dag"
+["d1203"]="Drick en öl-dagen"
 ["d1204"]="Armbandsklockans dag"
-["d1205"]="Int. dagen för frivilligas arbete för ekonomisk och social utveckling
-Internationella volontärdagen
-Världsdagen för jordmån"
-["d1207"]="Internationella dagen för civil luftfart"
-["d1209"]="Internationella dagen mot korruption
-Pepparkakans dag
-Annadagen
+["d1205"]="Internationella volontärdagen"
+["d1209"]="Pepparkakans dag
 Läkarsekreterarens dag"
 ["d1210"]="Internationella djurrättsdagen
-Mänskliga rättigheternas dag
 Nobeldagen
 Terra Madre day"
-["d1211"]="Internationella dagen för världens berg
-Tangons dag"
-["d1212"]="Julstjärnans dag
-Internationella dagen för neutralitet
-Internationella dagen för universell sjukförsäkring för alla"
+["d1211"]="Tangons dag"
+["d1212"]="Julstjärnans dag"
 ["d1214"]="Internationella ap-dagen"
-["d1218"]="Internationella migrationsdagen
-Kakans dag"
+["d1218"]="Kakans dag"
 ["d1219"]="Jultröjans dag"
-["d1220"]="Internationella mänskliga solidaritetens dag"
-["d1221"]="Tomasdagen
-Kortfilmens dag
+["d1221"]="Kortfilmens dag
 Skumtomtens dag"
 ["d1223"]="Drottningens födelsedag"
 ["d1227"]="Nationella regifting-dagen"
@@ -672,6 +536,7 @@ Skumtomtens dag"
 ["d1229"]="Statisternas dag"
 ["d1231"]="Internationella Expect a better tomorrow-dagen"
 )
+
 today=${days[$day]}
 if [[ ! -z ${today} ]]; then
     printf "%s\n" "$today"
@@ -949,6 +814,10 @@ fi
 # Städarnas dag
 # 6 december
 # Nikolausdagen *
+# 9 december
+# Annadagen
+# 12 december
+# Tomasdagen
 # 13 december
 # Luciadagen *
 # 19 december
