@@ -88,12 +88,17 @@ International UN days.
 - Some days may be moving dates (based on UN2024 dates - close enough! (too much hassle to track?) 
 - Use as-is (or as variable for other programs, like your terminal splash!)
 - No webscraping - just a big associative array.
+- To-do: Support moving dates (maybe if I am real bored some day...)
 
 <br/>
 
 ## day-se
-Similar to 'day' but only (mostly) Swedish theme-days (No holidays or moving dates though, again.) 
+Similar to 'day' but only (mostly) Swedish theme-days.
 - Use as-is (or as variable for other programs, like your terminal splash!)
+- "Mostly", as some "special interest" (and joke-y) days are also included
+- Does not included UN days
+- Does not include moving dates
+- Does not include religious holidays - a lot of them are moving dates (weird to just include "some" of these (2me))
 
 <br/>
 
