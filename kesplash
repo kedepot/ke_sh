@@ -81,5 +81,5 @@ fi
 if [[ "$1" == "nod" ]] ;then
     printf "\n${M}[ Session #%i ] %s${L}\n${H}  %s${L} - System life: %s \n\n" $count "$now" "$up" "$life"
 else
-    printf "\n${M}[ Session #%i ] %s${L}\n%s\n${H}%s${L} - System life: %s \n\n" $count "$now" "$daytxt" "$up" "$life"
+    printf "\n${M}[ Session #%i ] %s${L}\n${H}%s${L} - System life: %s \n\n%s\n\n" $count "$now" "$up" "$life" "$daytxt"
 fi
