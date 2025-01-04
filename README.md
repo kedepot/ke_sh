@@ -58,8 +58,6 @@ List Time Zones, in Shell script.
 
 ![image](https://user-images.githubusercontent.com/95410139/232210713-53559e23-61e3-47da-ac0e-25dfbe11f2bf.png)
 
-Note: Easy enough to change both colors & locations, should you disagree with the choices!
-
 <br/>
 
 ## zipseparate
