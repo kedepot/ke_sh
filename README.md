@@ -9,7 +9,7 @@ Tip: Add script folder to ENV in your .bashrc (or similar) and run the scripts a
 Bash Splash!
 From neofetch to pfetch...to just a little bit more up-time stats:
 
-![image](https://github.com/kedepot/ke_sh/assets/95410139/b1c657cf-aaad-427e-8c7b-f2b7d6283bcd)
+![kesplash](https://github.com/user-attachments/assets/4dc096b1-ae45-4042-8e4c-9b4194284e78)
 
 ### Info
 - Uses 'last reboot' data to gather "approximate" data
