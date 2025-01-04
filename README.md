@@ -105,5 +105,5 @@ Similar to 'day' but only (mostly) Swedish theme-days. In swedish!
 Converts input text to html-code mixed with regular characters and commentes  
 - Should work reasonably well against the dumbest scrapers
 - No other conversions/efforts are needed, just paste into html document
-- There are many online tools for this, but they come and go...
 - Remember to quote the input if there are spaces!
+- There are many simliar online tools (if you don't mind giving random online sites your email address)
