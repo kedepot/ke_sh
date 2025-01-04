@@ -21,7 +21,7 @@ From neofetch to pfetch...to just a little bit more up-time stats:
 
 ### Use
 Run kesplash from the top of your .bashrc (or similar).  
-Feel free to tweak the colours and formatting to whatever you prefer!  
+or, Use/Modify as you see fit.
 
 Optional Arguments:  
 **nod** (no 'day'+'day-se') or  
