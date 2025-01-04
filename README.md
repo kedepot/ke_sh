@@ -83,10 +83,9 @@ International UN days.
 
 ![2024-11-24_11-33](https://github.com/user-attachments/assets/d523c4ab-c96e-4d99-abbe-a22ada7ca8db)
 
-- Some days may be moving dates (based on UN2024 dates - close enough! (too much hassle to track?) 
+- Some days may be moving dates (based on UN2024 dates - close enough! To-do: Support moving dates...)
 - Use as-is (or as variable for other programs, like your terminal splash!)
-- No webscraping - just a big associative array.
-- To-do: Support moving dates (maybe if I am real bored some day...)
+- No webscraping - just a big associative array  
 
 <br/>
 
@@ -95,7 +94,7 @@ Similar to 'day' but only (mostly) Swedish theme-days. In swedish!
 - Use as-is (or as variable for other programs, like your terminal splash!)
 - "Mostly", as some "special interest" (and joke-y) days are also included
 - Does not include UN days or days with moving dates
-- No religious holidays: a lot of them are moving dates (weird to just include "some" of these imho)
+- No religious holidays/Moving dates. To-do: Support moving dates...
 
 <br/>
 
